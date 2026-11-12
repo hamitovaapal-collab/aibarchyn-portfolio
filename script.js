@@ -97,6 +97,9 @@ const words = {
     }
 };
 
+Object.assign(words.ky, {"resumeTitle":"Резюме","resumeBtn":"Резюмени көрүү","back":"← Портфолиого кайтуу","print":"Басып чыгаруу / PDF сактоо","summary":"Кыскача маалымат","education":"Билим","educationText":"Frontend Developer курсун аяктадым. HTML, CSS, JavaScript, React жана Figma негиздерин үйрөндүм.","practice":"Окуу долбоорлору","resumeRole":"Башталгыч Frontend Developer","name":"Айбарчын Икрамова"});
+Object.assign(words.ru, {"resumeTitle":"Резюме","resumeBtn":"Посмотреть резюме","back":"← Вернуться в портфолио","print":"Печать / сохранить PDF","summary":"О себе","education":"Образование","educationText":"Окончила курс Frontend Developer. Изучила основы HTML, CSS, JavaScript, React и Figma.","practice":"Учебные проекты","resumeRole":"Начинающий Frontend Developer","name":"Айбарчын Икрамова"});
+Object.assign(words.en, {"resumeTitle":"Resume","resumeBtn":"View resume","back":"← Back to portfolio","print":"Print / Save PDF","summary":"Profile","education":"Education","educationText":"Completed a Frontend Developer course covering the basics of HTML, CSS, JavaScript, React, and Figma.","practice":"Learning projects","resumeRole":"Entry-level Frontend Developer","name":"Aibarchyn Ikramova"});
 const lang = document.getElementById('lang');
 
 function changeLanguage(language) {
@@ -105,6 +108,9 @@ function changeLanguage(language) {
     if (!translations) return;
 
     document.documentElement.lang = language;
+    lang.value = language;
+    document.title = translations.name + ' — ' + (document.body.classList.contains('resume-page') ? translations.resumeTitle : 'Portfolio');
+    try { localStorage.setItem('portfolio-language', language); } catch {}
 
     document.querySelectorAll('[data-i]').forEach(element => {
         const key = element.dataset.i;
@@ -118,3 +124,6 @@ function changeLanguage(language) {
 lang.addEventListener('change', () => {
     changeLanguage(lang.value);
 });
+
+try { changeLanguage(localStorage.getItem('portfolio-language') || 'ky'); } catch { changeLanguage('ky'); }
+document.getElementById('print-resume')?.addEventListener('click', () => window.print());
