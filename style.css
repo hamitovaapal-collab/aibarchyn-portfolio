@@ -8,7 +8,7 @@
     --site-on-background: #1b2940;
     --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     --site-heading-scale: 1;
-    color-scheme: light dark;
+    color-scheme: light;
 }
 
 * {
@@ -343,4 +343,29 @@ select {
     .wrap {
         padding: 0 18px;
     }
+}
+
+html { scroll-behavior: smooth; }
+:focus-visible { outline: 3px solid #1d3e6f; outline-offset: 4px; }
+button.btn { border: 0; cursor: pointer; font: inherit; }
+.contact-item { min-width: 0; overflow-wrap: anywhere; }
+.navlinks { flex-wrap: wrap; }
+.resume-toolbar { display: flex; gap: 16px; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 24px 0; }
+.resume-sheet { max-width: 850px; margin: 0 auto 48px; padding: 40px; background: #fff; border: 1px solid #d7e4f7; border-radius: 18px; }
+.resume-sheet h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.2; }
+.resume-sheet h2 { margin: 26px 0 10px; font-size: 1.2rem; border-bottom: 1px solid #d7e4f7; padding-bottom: 6px; }
+.resume-sheet h3 { margin: 12px 0 4px; font-size: 1rem; }
+.resume-sheet p { margin: 6px 0; }
+.resume-sheet .role { margin: 12px 0; }
+@media (max-width: 760px) { .resume-sheet { padding: 24px 18px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body, #app { background: #fff; color: #17243a; }
+  .resume-toolbar { display: none; }
+  .resume-sheet { max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; font-size: 10pt; line-height: 1.4; }
+  .resume-sheet h1 { font-size: 24pt; }
+  .resume-sheet h2 { margin-top: 16px; break-after: avoid; }
+  .resume-sheet article { break-inside: avoid; }
+  a { color: #17243a; }
 }
